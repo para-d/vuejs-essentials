@@ -14,31 +14,6 @@
         </style>
     </head>
     <body>
-        <a href="/">Home</a> / <a href="doc.html">Doc</a>
-        <div id="app" v-cloak>
-            <div v-if="visible1" class="box c1">if: visible1: {{visible1}} | visible2: {{visible2}}</div>
-            <div v-else-if="visible2" class="box c2">else if: visible1: {{visible1}} | visible2: {{visible2}}</div>
-            <div v-else class="box c3">else: visible1: {{visible1}} | visible2: {{visible2}}</div>
-
-            <div v-show="show" class="box c4">show</div>
-            <div>
-                <button v-on:click="visible1=!visible1">visible1 toggle</button>
-                <button v-on:click="visible2=!visible2">visible2 toggle</button>
-                <button v-on:click="show=!show">show toggle</button>
-            </div>
-        </div>
-        <script type="text/javascript">
-            let app = Vue.createApp({
-                data : function(){
-                    return {
-                        visible1:false,
-                        visible2:false,
-                        show:true
-                    };
-                },
-            });
-
-            app.mount('#app');
-        </script>
+        <h1>Incomplete</h1>
     </body>
 </html>
