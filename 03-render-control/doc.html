@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>Render Control</h1>
+
+        <h2>v-cloak</h2>
+        <p>Helps to keep the templates visible until the application is ready.</p>
+
+        <h2>v-if, v-if-else, v-else</h2>
+        <p>Decides whether an element should be rendered or not.</p>
+
+        <h2>v-show</h2>
+        <p>Decides if an element should be set to visible or not. Controlled through CSS <code>display:none</code></p>
+
+        <h2>Example</h2>
+        <h3>Styles</h3>
+        <pre>
+            &#x3C;style media=&#x22;screen&#x22;&#x3E;
+                div.box{ width:100px; height:100px;}
+                div.box.c1{ background-color:yellow; }
+                div.box.c2{ background-color:red; }
+                div.box.c3{ background-color:blue; }
+                div.box.c4{ background-color:green; }
+                [v-cloak] { display: :none; }
+            &#x3C;/style&#x3E;
+        </pre>
+        <h3>Body</h3>
+        <pre>
+            &#x3C;div id=&#x22;app&#x22; v-cloak&#x3E;
+                &#x3C;div v-if=&#x22;visible1&#x22; class=&#x22;box c1&#x22;&#x3E;&#x3C;/div&#x3E;
+                &#x3C;div v-else-if=&#x22;visible2&#x22; class=&#x22;box c2&#x22;&#x3E;&#x3C;/div&#x3E;
+                &#x3C;div v-else class=&#x22;box c3&#x22;&#x3E;&#x3C;/div&#x3E;
+
+                &#x3C;div v-show=&#x22;show&#x22; class=&#x22;box c4&#x22;&#x3E;&#x3C;/div&#x3E;
+            &#x3C;/div&#x3E;
+            &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                let app = Vue.createApp({
+                    data : function(){
+                        return {
+                            visible1:false,
+                            visible2:false,
+                            show:false
+                        };
+                    }
+                });
+
+                app.mount(&#x27;#app&#x27;);
+            &#x3C;/script&#x3E;
+        </pre>
+
+    </body>
+</html>

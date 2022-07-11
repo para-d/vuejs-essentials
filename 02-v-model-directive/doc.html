@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>v-model directive</h1>
+
+        <h2>App so Far</h2>
+        <pre>
+            &#x3C;div id=&#x22;my-app&#x22;&#x3E;
+                &#x3C;h1&#x3E;{{message}}&#x3C;/h1&#x3E;
+            &#x3C;/div&#x3E;
+            &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                let app = Vue.createApp({
+                    data : function(){
+                        return {
+                            message:&#x27;Hello World..!&#x27;
+                        };
+                    }
+                });
+
+                app.mount(&#x27;#my-app&#x27;);
+            &#x3C;/script&#x3E;
+        </pre>
+        <h2>Add an Input Box to Model the Data Variable</h2>
+        <pre>
+            &#x3C;input v-model=&#x22;message&#x22; /&#x3E;
+        </pre>
+        <h2>Final App</h2>
+        <pre>
+            &#x3C;div id=&#x22;my-app&#x22;&#x3E;
+                &#x3C;h1&#x3E;{{message}}&#x3C;/h1&#x3E;
+                &#x3C;input v-model=&#x22;message&#x22; /&#x3E;
+            &#x3C;/div&#x3E;
+            &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                let app = Vue.createApp({
+                    data : function(){
+                        return {
+                            message:&#x27;Hello World..!&#x27;
+                        };
+                    }
+                });
+
+                app.mount(&#x27;#my-app&#x27;);
+            &#x3C;/script&#x3E;
+        </pre>
+    </body>
+</html>

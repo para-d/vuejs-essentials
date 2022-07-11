@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>Hello World - Doc</h1>
+        <h2>Including Vue.js from CDN</h2>
+        <pre>
+            &#x3C;script src=&#x22;https://unpkg.com/vue@3.2.37&#x22;&#x3E;&#x3C;/script&#x3E;
+            &#x3C;script src=&#x22;https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js&#x22;&#x3E;&#x3C;/script&#x3E;
+        </pre>
+        <h2>Creating an application</h2>
+        <pre>
+            &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                let app = Vue.createApp({
+                    data : function(){
+                        return {
+                            message:&#x27;Hello World..!&#x27;
+                        };
+                    }
+                });
+            &#x3C;/script&#x3E;
+        </pre>
+        <h2>Mounting</h2>
+        <pre>
+            &#x3C;div id=&#x22;my-app&#x22;&#x3E;&#x3C;/div&#x3E;
+                &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                app.mount(&#x27;#my-app&#x27;);
+            &#x3C;/script&#x3E;
+        </pre>
+        <h2>Using data on page</h2>
+        <pre>
+            &#x3C;div id=&#x22;my-app&#x22;&#x3E;
+                &#x3C;h1&#x3E;{{message}}&#x3C;/h1&#x3E;
+            &#x3C;/div&#x3E;
+        </pre>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>Events</h1>
+
+        <h2>Long syntax</h2>
+        <pre>
+            &#x3C;button v-on:click=&#x22;/*do something here*/&#x22;&#x3E;Click&#x3C;/button&#x3E;
+        </pre>
+        <h2>Short syntax</h2>
+        <pre>
+            &#x3C;button @click=&#x22;/*do something here*/&#x22;&#x3E;Click&#x3C;/button&#x3E;
+        </pre>
+
+        <h2>Example</h2>
+        <h3>Styles</h3>
+        <pre>
+            &#x3C;style media=&#x22;screen&#x22;&#x3E;
+                div.box{ width:100px; height:100px;}
+                div.box.c1{ background-color:yellow; }
+                div.box.c2{ background-color:red; }
+                div.box.c3{ background-color:blue; }
+                div.box.c4{ background-color:green; }
+                [v-cloak] { display: :none; }
+            &#x3C;/style&#x3E;
+        </pre>
+        <h3>Body</h3>
+        <pre>
+            &#x3C;a href=&#x22;/&#x22;&#x3E;Home&#x3C;/a&#x3E; / &#x3C;a href=&#x22;doc.html&#x22;&#x3E;Doc&#x3C;/a&#x3E;
+            &#x3C;div id=&#x22;app&#x22; v-cloak&#x3E;
+                &#x3C;div v-if=&#x22;visible1&#x22; class=&#x22;box c1&#x22;&#x3E;if: visible1: {{visible1}} | visible2: {{visible2}}&#x3C;/div&#x3E;
+                &#x3C;div v-else-if=&#x22;visible2&#x22; class=&#x22;box c2&#x22;&#x3E;else if: visible1: {{visible1}} | visible2: {{visible2}}&#x3C;/div&#x3E;
+                &#x3C;div v-else class=&#x22;box c3&#x22;&#x3E;else: visible1: {{visible1}} | visible2: {{visible2}}&#x3C;/div&#x3E;
+
+                &#x3C;div v-show=&#x22;show&#x22; class=&#x22;box c4&#x22;&#x3E;show&#x3C;/div&#x3E;
+                &#x3C;div&#x3E;
+                    &#x3C;button v-on:click=&#x22;visible1=!visible1&#x22;&#x3E;visible1 toggle&#x3C;/button&#x3E;
+                    &#x3C;button v-on:click=&#x22;visible2=!visible2&#x22;&#x3E;visible2 toggle&#x3C;/button&#x3E;
+                    &#x3C;button v-on:click=&#x22;show=!show&#x22;&#x3E;show toggle&#x3C;/button&#x3E;
+                &#x3C;/div&#x3E;
+            &#x3C;/div&#x3E;
+            &#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+                let app = Vue.createApp({
+                    data : function(){
+                        return {
+                            visible1:false,
+                            visible2:false,
+                            show:true
+                        };
+                    }
+                });
+
+                app.mount(&#x27;#app&#x27;);
+            &#x3C;/script&#x3E;
+        </pre>
+        <h2>Event Modifiers</h2>
+        <p>Different events can have unique modifiers. There are some modifiers that are commonly used as well.</p>
+        <h3>Common modifiers</h3>
+        <dl>
+            <dt>.stop</dt>
+            <dd>
+                <p>Stop propagation: Stop the event from propagating into the child nodes.</p>
+                <pre>
+                    &#x3C;button @click.stop=&#x22;...&#x22;&#x3E;Click here&#x3C;/button&#x3E;
+                </pre>
+            </dd>
+            <dt>.prevent</dt>
+            <dd>
+                <p>Prevent Default: Similar to <code>event.preventDefault()</code>.</p>
+                <pre>
+                    &#x3C;button @click.prevent=&#x22;...&#x22;&#x3E;Click here&#x3C;/button&#x3E;
+                </pre>
+            </dd>
+            <dt>.self</dt>
+            <dt>.capture</dt>
+            <dt>.once</dt>
+            <dt>.passive</dt>
+        </dl>
+        <h3>Unique modifier examples</h3>
+        <pre>
+            &#x3C;button @click.right=&#x22;...&#x22;&#x3E;Do a right click&#x3C;/button&#x3E;
+            &#x3C;input @keyup.13=&#x22;...&#x22; /&#x3E; // enter key presse
+        </pre>
+        <h2>Use cases</h2>
+        <h3>Basic behaviour</h3>
+        <pre>
+            &#x3C;button @click=&#x22;...&#x22;&#x3E;&#x3C;/button&#x3E;
+        </pre>
+        <h3>Modifier chaining</h3>
+        <pre>
+            &#x3C;a @click.right.prevent.self=&#x22;&#x22;&#x3E;&#x3C;/a&#x3E;
+        </pre>
+        <h3>Just the modifier</h3>
+        <pre>
+            &#x3C;form @submit.prevent&#x3E;&#x3C;/form&#x3E;
+        </pre>
+        <h3><code>$event/event</code> variable</h3>
+        <pre>
+            &#x3C;button @click=&#x22;do_something_with(&#x27;some-argument&#x27;,$event)&#x22;&#x3E;&#x3C;/button&#x3E;
+            &#x3C;button @click=&#x22;(event) =&#x3E; do_something_with(&#x27;some-argument&#x27;,event)&#x22;&#x3E;&#x3C;/button&#x3E;
+        </pre>
+    </body>
+</html>
