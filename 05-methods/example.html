@@ -5,15 +5,49 @@
         <title>Example</title>
         <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
         <style media="screen">
-            div.box{ width:300px; height:100px;}
-            div.box.c1{ background-color:yellow; }
-            div.box.c2{ background-color:red; }
-            div.box.c3{ background-color:blue; }
-            div.box.c4{ background-color:green; }
+            div.box{ width:300px; height:100px; border:1px solid gray; margin-top:30px;}
             [v-cloak] { display: :none; }
         </style>
     </head>
     <body>
-        <h1>Incomplete</h1>
+        <a href="/">Home</a> / <a href="doc.html">Doc</a>
+        <div id="app" v-cloak>
+            <div class="box">
+                {{logData}}
+            </div>
+            <button @click="method1">Click to call method1 [name only]</button><br>
+            <button @click="method1()">Click to call method1() [with parenthesis]</button><br>
+            <button @click="method2('value 1')">Click to call method2(param) [with parameter]</button><br>
+            <button @click="method3($event)">Click to call method3($event) [with $event]</button><br>
+            <button @click="(event) => method3(event)">Click to call method3(event) [with event]</button><br>
+            <button @click="method4('value 2',$event)">Click to call method4(param,$event) [with $event and paramter]</button><br>
+            <button @click="(event) => method4('value 3',event)">Click to call method4(param,event) [with event and paramter]</button>
+
+        </div>
+        <script type="text/javascript">
+            let app = Vue.createApp({
+                data: function(){
+                    return {
+                        logData: ''
+                    };
+                },
+                methods: {
+                    method1: function(){
+                        this.logData = 'method1 called';
+                    },
+                    method2: function(param){
+                        this.logData = 'method2 called with parameter: "'+param+'"';
+                    },
+                    method3: function(event){
+                        this.logData = 'method3 called through "'+event.type+'" event';
+                    },
+                    method4: function(param,event){
+                        this.logData = 'method4 called with parameter: "'+param+'" through "'+event.type+'" event';
+                    },
+                }
+            });
+
+            app.mount('#app');
+        </script>
     </body>
 </html>

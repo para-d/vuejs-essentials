@@ -5,6 +5,187 @@
         <title>Doc</title>
     </head>
     <body>
-        <h1>Incomplete</h1>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>Methods</h1>
+
+        <p>Methods can be declared in the options array.</p>
+        <h2>Declaration</h2>
+        <pre>
+            let app = Vue.createApp({
+                methods: {
+                    method1: function(){
+                        ...
+                    },
+                    method2() {
+                        ...
+                    }
+                }
+            });
+        </pre>
+        <h2>Accessing Data Variables</h2>
+        <pre>
+            let app = Vue.createApp({
+                data: function(){
+                    return {
+                        var1: 'some text',
+                        var2: 3
+                    };
+                },
+                methods: {
+                    method1: function(){
+                        console.log(this.var1);
+                    },
+                    method2() {
+                        this.var2+=1;
+                    }
+                }
+            });
+        </pre>
+
+        <h2>Calling</h2>
+        <h3>Just by the name</h3>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;div class&#61;&#34;box&#34;&#62;
+                    &#123;&#123;logData&#125;&#125;
+                &#60;&#47;div&#62;
+                &#60;button &#64;click&#61;&#34;method1&#34;&#62;Click to call method1 &#91;name only&#93;&#60;&#47;button&#62;
+
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;
+                    data&#58; function&#40;&#41;&#123;
+                        return &#123;
+                            logData&#58; &#39;&#39;
+                        &#125;&#59;
+                    &#125;&#44;
+                    methods&#58; &#123;
+                        method1&#58; function&#40;&#41;&#123;
+                            this&#46;logData &#61; &#39;method1 called&#39;&#59;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <h3>With parenthesis</h3>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;div class&#61;&#34;box&#34;&#62;
+                    &#123;&#123;logData&#125;&#125;
+                &#60;&#47;div&#62;
+                &#60;button &#64;click&#61;&#34;method1&#40;&#41;&#34;&#62;Click here&#60;&#47;button&#62;
+
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;
+                    data&#58; function&#40;&#41;&#123;
+                        return &#123;
+                            logData&#58; &#39;&#39;
+                        &#125;&#59;
+                    &#125;&#44;
+                    methods&#58; &#123;
+                        method1&#58; function&#40;&#41;&#123;
+                            this&#46;logData &#61; &#39;method1 called with parenthesis&#39;&#59;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <h3>With Parameters</h3>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;div class&#61;&#34;box&#34;&#62;
+                    &#123;&#123;logData&#125;&#125;
+                &#60;&#47;div&#62;
+                &#60;button &#64;click&#61;&#34;method1&#40;&#39;text1&#39;&#44; &#39;text2&#39;&#41;&#34;&#62;Click here&#60;&#47;button&#62;
+
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;
+                    data&#58; function&#40;&#41;&#123;
+                        return &#123;
+                            logData&#58; &#39;&#39;
+                        &#125;&#59;
+                    &#125;&#44;
+                    methods&#58; &#123;
+                        method1&#58; function&#40;param1&#44;param2&#41;&#123;
+                            this&#46;logData &#61; &#39;method1 called with param1&#58; &#39;&#43;param1&#43;&#39; param2&#58; &#39;&#43;param2&#59;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <h3>With Events and Parmeters</h3>
+        <p>There are two ways of passing an event to a method.</p>
+        <ol>
+            <li>
+                <div>Passing directly using <code>$event</code> variable</div>
+                <div>
+                    <pre>
+    &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+        &#60;div class&#61;&#34;box&#34;&#62;
+            &#123;&#123;logData&#125;&#125;
+        &#60;&#47;div&#62;
+        &#60;button &#64;click&#61;&#34;method1&#40;&#39;text1&#39;&#44;&#36;event&#41;&#34;&#62;Click here&#60;&#47;button&#62;
+
+    &#60;&#47;div&#62;
+    &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+        let app &#61; Vue&#46;createApp&#40;&#123;
+            data&#58; function&#40;&#41;&#123;
+                return &#123;
+                    logData&#58; &#39;&#39;
+                &#125;&#59;
+            &#125;&#44;
+            methods&#58; &#123;
+                method1&#58; function&#40;param1&#44;event&#41;&#123;
+                    this&#46;logData &#61; &#39;method1 called with param1&#58; &#39;&#43;param1&#43;&#39; through &#39;&#43;event&#46;type&#43;&#39; event&#39;&#59;
+                &#125;
+            &#125;
+        &#125;&#41;&#59;
+
+        app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+    &#60;&#47;script&#62;
+                    </pre>
+                </div>
+
+            </li>
+            <li>
+                <div>Passing as a parameter to an inline function</div>
+                <div>
+                    <pre>
+    &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+        &#60;div class&#61;&#34;box&#34;&#62;
+            &#123;&#123;logData&#125;&#125;
+        &#60;&#47;div&#62;
+        &#60;button &#64;click&#61;&#34;&#40;event&#41; &#61;&#62; method1&#40;&#39;text2&#39;&#44;event&#41;&#34;&#62;Click here&#60;&#47;button&#62;
+
+    &#60;&#47;div&#62;
+    &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+        let app &#61; Vue&#46;createApp&#40;&#123;
+            data&#58; function&#40;&#41;&#123;
+                return &#123;
+                    logData&#58; &#39;&#39;
+                &#125;&#59;
+            &#125;&#44;
+            methods&#58; &#123;
+                method1&#58; function&#40;param1&#44;event&#41;&#123;
+                    this&#46;logData &#61; &#39;method1 called with param1&#58; &#39;&#43;param1&#43;&#39; through &#39;&#43;event&#46;type&#43;&#39; event&#39;&#59;
+                &#125;
+            &#125;
+        &#125;&#41;&#59;
+
+        app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+    &#60;&#47;script&#62;
+                    </pre>
+                </div>
+            </li>
+        </ol>
+
     </body>
 </html>
