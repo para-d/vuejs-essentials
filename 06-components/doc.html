@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <h1>Components</h1>
+        <h2>Placeholder</h2>
+        <p>Vue uses a custom non-standard placeholder tag in the HTML document so that it can replace it with the real template when it is rendered.</p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;component1 &#47;&#62;
+            &#60;&#47;div&#62;
+        </pre>
+
+        <h2>Defining the New Component</h2>
+        <p>The custom non-standard Vue components that you use as placeholders, have to be defined after the <code>Vue.createApp</code> line and before the app is mounted.</p>
+        <pre>
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;component1&#39;&#44;&#123;
+                    template&#58; &#96;
+                        &#60;div&#62;&#60;h1&#62;This is Component1&#60;&#47;h1&#62;&#60;&#47;div&#62;
+                    &#96;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+
+        <p><strong>This page is incomplete and will be updated soon</strong></p>
+    </body>
+</html>
