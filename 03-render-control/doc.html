@@ -5,9 +5,12 @@
         <title>Doc</title>
     </head>
     <body>
-        <a href="/">Home</a> / <a href="example.html">Example</a>
-        <h1>Render Control</h1>
-
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a>');
+        </script>
+        <h1>Render/Flow Control</h1>
+        <p><a href="example-1.html">Example-1</a></p>
         <h2>v-cloak</h2>
         <p>Helps to keep the templates visible until the application is ready.</p>
 
@@ -52,6 +55,24 @@
                 app.mount(&#x27;#app&#x27;);
             &#x3C;/script&#x3E;
         </pre>
+        <h3>Loops</h3>
+        <p><a href="example-2.html">Example-2</a></p>
+        <p>Note the <code>v-bind:key</code> property. It should be a unique value for each iteration of the loop. </p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;p v&#45;for&#61;&#34;&#40;str&#44;index&#41; in strings&#34; v&#45;bind&#58;key&#61;&#34;index&#34;&#62;&#123;&#123;index&#125;&#125; &#45; &#123;&#123;str&#125;&#125;&#60;&#47;p&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;
+                    data &#58; function&#40;&#41;&#123;
+                        return &#123;
+                            strings&#58;&#91;&#39;str 1&#39;&#44;&#39;str 2&#39;&#44;&#39;str 3&#39;&#93;
+                        &#125;&#59;
+                    &#125;
+                &#125;&#41;&#59;
 
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
     </body>
 </html>

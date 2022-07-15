@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Example</title>
+        <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+        <style media="screen">
+            [v-cloak] { display: :none; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
+        </script>
+
+        <div id="app" v-cloak>
+            <registration-form></registration-form>
+        </div>
+        <script type="text/javascript">
+            let app = Vue.createApp({});
+                app.component('registration-form',{
+                    template: `
+                        <h1>Register</h1>
+                        <form class="" action="index.html" method="post">
+                            <div>
+                                <label for="username">Username</label><br>
+                                <input type="text" name="username" id="username" value="">
+                            </div>
+                            <div>
+                                <label for="password">Password</label><br>
+                                <input type="password" name="password" id="password" value="">
+                            </div>
+                            <input type="submit" name="" value="Register">
+                        </form>
+                    `
+                });
+            app.mount('#app')
+        </script>
+    </body>
+</html>

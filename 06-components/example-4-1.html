@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Example</title>
+        <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+        <style media="screen">
+            [v-cloak] { display: :none; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
+        </script>
+
+        <div id="app" v-cloak>
+            <parent-component></parent-component>
+        </div>
+        <script type="text/javascript">
+            let app = Vue.createApp({});
+
+            app.component('parent-component',{
+                template:`
+                    <form>
+                        <!-- passing literal values -->
+                        <child-component label="Job Title"></child-component>
+
+                        <!-- passing variables -->
+                        <child-component v-bind:label="label"></child-component>
+                    </form>
+                `,
+                data: function(){
+                    return {
+                        label: 'Location'
+                    }
+                }
+            });
+
+            app.component('child-component',{
+                template:`
+                    <div>
+                        <label>{{label}}</label><br>
+                        <input />
+                    </div>
+                `,
+                props: ['label']
+            });
+
+            app.mount('#app');
+        </script>
+    </body>
+</html>

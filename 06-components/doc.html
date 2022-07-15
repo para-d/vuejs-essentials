@@ -5,23 +5,34 @@
         <title>Doc</title>
     </head>
     <body>
-        <a href="/">Home</a> / <a href="example.html">Example</a>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a>');
+        </script>
         <h1>Components</h1>
         <h2>Placeholder</h2>
-        <p>Vue uses a custom non-standard placeholder tag in the HTML document so that it can replace it with the real template when it is rendered.</p>
+        <p>Vue uses a custom non-standard placeholder tag in the HTML document so that it can replace it with the real template when it is rendered. It is recommended to use PascalCase when defining components</p>
+        <p>If the components are defined in side of HTML dom. It's better to use kebab-case and also a closing tag.</p>
+        <p>Vue.js compolent names are case sensitive.</p>
         <pre>
             &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
-                &#60;component1 &#47;&#62;
+                &#60;component&#45;1&#62;&#60;&#47;component&#45;1&#62;
             &#60;&#47;div&#62;
         </pre>
 
         <h2>Defining the New Component</h2>
+        <p><a href="example-1.html">Example - 1</a></p>
         <p>The custom non-standard Vue components that you use as placeholders, have to be defined after the <code>Vue.createApp</code> line and before the app is mounted.</p>
+        <p>The <code>app.component()</code> method takes two parameters, <code>&#60;name&#45;of&#45;the&#45;component&#62;</code> and <code>&#60;options&#45;object&#62;</code>.</p>
+        <p><code>template</code> is the only mandatory attribute for the <code>&#60;options&#45;object&#62;</code></p>
         <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;component-1 &#47;&#62;
+            &#60;&#47;div&#62;
             &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
                 let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
 
-                app&#46;component&#40;&#39;component1&#39;&#44;&#123;
+                app&#46;component&#40;&#39;component-1&#39;&#44;&#123;
                     template&#58; &#96;
                         &#60;div&#62;&#60;h1&#62;This is Component1&#60;&#47;h1&#62;&#60;&#47;div&#62;
                     &#96;
@@ -31,6 +42,235 @@
             &#60;&#47;script&#62;
         </pre>
 
-        <p><strong>This page is incomplete and will be updated soon</strong></p>
+        <h2>Creating a registration form</h2>
+        <div>
+            <p>Let's create the following registration form using Vue.js</p>
+            <img src="registration-form.png" alt="">
+        </div>
+        <h3>Creating a registration form - simple example</h3>
+        <p><a href="example-2.html">Example - 2</a></p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;registration&#45;form&#62;&#60;&#47;registration&#45;form&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+                    app&#46;component&#40;&#39;registration&#45;form&#39;&#44;&#123;
+                        template&#58; &#96;
+                            &#60;h1&#62;Register&#60;&#47;h1&#62;
+                            &#60;form class&#61;&#34;&#34; action&#61;&#34;index&#46;html&#34; method&#61;&#34;post&#34;&#62;
+                                &#60;div&#62;
+                                    &#60;label for&#61;&#34;username&#34;&#62;Username&#60;&#47;label&#62;&#60;br&#62;
+                                    &#60;input type&#61;&#34;text&#34; name&#61;&#34;username&#34; id&#61;&#34;username&#34; value&#61;&#34;&#34;&#62;
+                                &#60;&#47;div&#62;
+                                &#60;div&#62;
+                                    &#60;label for&#61;&#34;password&#34;&#62;Password&#60;&#47;label&#62;&#60;br&#62;
+                                    &#60;input type&#61;&#34;password&#34; name&#61;&#34;password&#34; id&#61;&#34;password&#34; value&#61;&#34;&#34;&#62;
+                                &#60;&#47;div&#62;
+                                &#60;input type&#61;&#34;submit&#34; name&#61;&#34;&#34; value&#61;&#34;Register&#34;&#62;
+                            &#60;&#47;form&#62;
+                        &#96;
+                    &#125;&#41;&#59;
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;
+            &#60;&#47;script&#62;
+        </pre>
+
+        <h3>Creating a registration form - breaking down into sub components</h3>
+        <p><a href="example-3.html">Example - 3</a></p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;registration&#45;form&#62;&#60;&#47;registration&#45;form&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;registration&#45;form&#39;&#44;&#123;
+                    template&#58; &#96;
+                    &#60;form&#45;heading&#62;&#60;&#47;form&#45;heading&#62;
+                    &#60;form class&#61;&#34;&#34; action&#61;&#34;index&#46;html&#34; method&#61;&#34;post&#34;&#62;
+                        &#60;input&#45;component&#45;1&#62;&#60;&#47;input&#45;component&#45;1&#62;
+                        &#60;input&#45;component&#45;2&#62;&#60;&#47;input&#45;component&#45;2&#62;
+                        &#60;submit&#45;button&#62;&#60;&#47;submit&#45;button&#62;
+                    &#60;&#47;form&#62;
+                    &#96;
+                &#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;form&#45;heading&#39;&#44;&#123;
+                    template&#58;&#96;&#60;h1&#62;&#123;&#123;title&#125;&#125;&#60;&#47;h1&#62;&#96;&#44; &#47;&#47; Title is provided as a variable
+                    data&#58; function&#40;&#41;&#123;
+                        return &#123;
+                            title&#58;&#39;Register&#39;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+                app&#46;component&#40;&#39;input&#45;component&#45;1&#39;&#44;&#123;
+                    template&#58; &#96;
+                    &#60;div&#62;
+                        &#60;label for&#61;&#34;username&#34;&#62;Username&#60;&#47;label&#62;&#60;br&#62;
+                        &#60;input type&#61;&#34;text&#34; name&#61;&#34;username&#34; id&#61;&#34;username&#34; value&#61;&#34;&#34;&#62;
+                    &#60;&#47;div&#62;
+                    &#96;
+                &#125;&#41;&#59;
+                app&#46;component&#40;&#39;input&#45;component&#45;2&#39;&#44;&#123;
+                    template&#58; &#96;
+                    &#60;div&#62;
+                        &#60;label for&#61;&#34;password&#34;&#62;Password&#60;&#47;label&#62;&#60;br&#62;
+                        &#60;input type&#61;&#34;password&#34; name&#61;&#34;password&#34; id&#61;&#34;password&#34; value&#61;&#34;&#34;&#62;
+                    &#60;&#47;div&#62;
+                    &#96;
+                &#125;&#41;&#59;
+                app&#46;component&#40;&#39;submit&#45;button&#39;&#44;&#123;
+                    template&#58; &#96;&#60;input type&#61;&#34;submit&#34; name&#61;&#34;&#34; value&#61;&#34;Register&#34;&#62;&#96;
+                &#125;&#41;&#59;
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+
+        <h3>Creating a registration form - passing/binding data between components</h3>
+        <p><a href="example-4.html">Example - 4</a></p>
+        <ul>
+            <li><code>v-bind:&#60;attribute&#45;name&#62;&#61;&#34;&#60;variable&#62;&#34;</code> or <code>:&#60;attribute&#45;name&#62;&#61;&#34;&#60;variable&#62;&#34;</code> on parent component.
+                <br>You have to use <code>v-bind</code> only when you're passing a variable. When you're passing literal values you can omit <code>v-bind</code> and
+                <br>pass as <code>&#60;attribute&#45;name&#62;&#61;&#34;&#60;value&#62;&#34;</code> </li>
+            <li><code>props</code> array on child component. The variables defined in <code>data</code> object in the child component's options override the prop variables.
+                <br>The values passed as <code>props</code> are immutable thus cannot be modified within the child component</li>
+            <li> <code>computed</code> attribute on child can bind values to the parent using getters and setters. Variables bound to the parent placeholder can be referred in the child
+                 <br>using the special variable <code>modelValue</code>. What happens behind the background is when you use <code>v-model</code> on parent's placeholder
+                 <br>it creates a <code>v-bind</code> attribute named <code>modelValue</code>
+                 <br>(<code>&#60;component&#45;name v&#45;model&#61;&#34;username&#34;&#62;&#60;&#47;component&#45;name&#62;</code> is same as <code>&#60;component&#45;name v&#45;model&#61;&#34;username&#34; v&#45;bind&#58;modelValue&#61;&#34;username&#34;&#62;&#60;&#47;component&#45;name&#62;</code>) </li>
+        </ul>
+        <h4>Passing data from parent component to child componenets</h4>
+        <p><a href="example-4-1.html">Example - 4.1</a></p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
+                &#60;parent&#45;component&#62;&#60;&#47;parent&#45;component&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;parent&#45;component&#39;&#44;&#123;
+                    template&#58;&#96;
+                        &#60;form&#62;
+                            &#60;&#33;&#45;&#45; passing literal values &#45;&#45;&#62;
+                            &#60;child&#45;component label&#61;&#34;Job Title&#34;&#62;&#60;&#47;child&#45;component&#62;
+
+                            &#60;&#33;&#45;&#45; passing variables &#45;&#45;&#62;
+                            &#60;child&#45;component v&#45;bind&#58;label&#61;&#34;label&#34;&#62;&#60;&#47;child&#45;component&#62;
+                        &#60;&#47;form&#62;
+                    &#96;&#44;
+                    data&#58; function&#40;&#41;&#123;
+                        return &#123;
+                            label&#58; &#39;Location&#39;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;child&#45;component&#39;&#44;&#123;
+                    template&#58;&#96;
+                        &#60;div&#62;
+                            &#60;label&#62;&#123;&#123;label&#125;&#125;&#60;&#47;label&#62;&#60;br&#62;
+                            &#60;input &#47;&#62;
+                        &#60;&#47;div&#62;
+                    &#96;&#44;
+                    props&#58; &#91;&#39;label&#39;&#93;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <h4>Modeling data from parent component to child components</h4>
+        <p><a href="example-4-2.html">Example - 4.2</a></p>
+        <p>With the following example, you can see when you type something in the parent component's input box, it is reflected in the child component's input box. But this doesn't work the other way around.</p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34;&#62;
+                &#60;parent&#45;component&#62;&#60;&#47;parent&#45;component&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;parent&#45;component&#39;&#44;&#123;
+                    template&#58; &#96;
+                        &#60;div&#62;
+                            &#60;label&#62;Parent Component&#60;&#47;label&#62;&#60;br&#62;
+                            &#60;input v&#45;model&#61;&#34;search&#34; &#47;&#62;
+                        &#60;&#47;div&#62;
+                        &#60;div&#62;
+                            &#60;input&#45;component v&#45;model&#61;&#34;search&#34; v&#45;bind&#58;label&#61;&#34;label&#34;&#62;&#60;&#47;input&#45;component&#62;
+                        &#60;&#47;div&#62;
+                    &#96;&#44;
+                    data&#58;function&#40;&#41;&#123;
+                        return &#123;
+                            label&#58; &#39;Search Terms&#39;&#44;
+                            search&#58; &#39;&#39;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;input&#45;component&#39;&#44;&#123;
+                    template&#58;&#96;
+                        &#60;label&#62;&#123;&#123;label&#125;&#125; &#40;child component&#41;&#60;&#47;label&#62;&#60;br&#62;
+                        &#60;input v&#45;model&#61;&#34;modelValue&#34; &#47;&#62;
+                    &#96;&#44;
+                    props&#58;&#91;&#39;label&#39;&#44;&#39;modelValue&#39;&#93;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+
+        <h4>Modeling data both ways</h4>
+        <p><a href="example-4-3.html">Example - 4.3</a></p>
+        <p>Since <code>props</code> are passed as immutable values, it is not possible to update them within the child component.</p>
+        <p>This can be achieved using the <code>computed</code> attribute in child component's options object. First you have to introduce a new variable that is local to the child.
+        <br>then you can associate <code>modelValue</code> using the newly introduced variable's getters and setters.</p>
+        <pre>
+            &#60;div id&#61;&#34;app&#34;&#62;
+                &#60;parent&#45;component&#62;&#60;&#47;parent&#45;component&#62;
+            &#60;&#47;div&#62;
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;parent&#45;component&#39;&#44;&#123;
+                    template&#58; &#96;
+                        &#60;div&#62;
+                            &#60;label&#62;Parent Component&#60;&#47;label&#62;&#60;br&#62;
+                            &#60;input v&#45;model&#61;&#34;search&#34; &#47;&#62;
+                        &#60;&#47;div&#62;
+                        &#60;div&#62;
+                            &#60;input&#45;component v&#45;model&#61;&#34;search&#34; v&#45;bind&#58;label&#61;&#34;label&#34;&#62;&#60;&#47;input&#45;component&#62;
+                        &#60;&#47;div&#62;
+                    &#96;&#44;
+                    data&#58;function&#40;&#41;&#123;
+                        return &#123;
+                            label&#58; &#39;Search Terms&#39;&#44;
+                            search&#58; &#39;&#39;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;input&#45;component&#39;&#44;&#123;
+                    template&#58;&#96;
+                        &#60;label&#62;&#123;&#123;label&#125;&#125; &#40;child component&#41;&#60;&#47;label&#62;&#60;br&#62;
+                        &#60;input v&#45;model&#61;&#34;childVariable&#34; &#47;&#62;
+                    &#96;&#44;
+                    props&#58;&#91;&#39;label&#39;&#44;&#39;modelValue&#39;&#93;&#44;
+                    computed&#58;&#123;
+                        childVariable&#58;&#123;
+                            get&#58;function&#40;&#41;&#123;
+                                return this&#46;modelValue&#59;
+                            &#125;&#44;
+                            set&#58;function&#40;value&#41;&#123;
+                                this&#46;&#36;emit&#40;&#39;update&#58;modelValue&#39;&#44;value&#41;&#59;
+                            &#125;
+                        &#125;
+                    &#125;
+                &#125;&#41;&#59;
+
+                app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <h4>Loop through components</h4>
+        <p><a href="example-4-4.html">Example - 4.4</a></p>
+
     </body>
 </html>

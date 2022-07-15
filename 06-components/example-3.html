@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Example</title>
+        <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+        <style media="screen">
+            [v-cloak] { display: :none; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
+        </script>
+
+        <div id="app" v-cloak>
+            <registration-form></registration-form>
+        </div>
+        <script type="text/javascript">
+            let app = Vue.createApp({});
+
+            app.component('registration-form',{
+                template: `
+                <form-heading></form-heading>
+                <form class="" action="index.html" method="post">
+                    <input-component-1></input-component-1>
+                    <input-component-2></input-component-2>
+                    <submit-button></submit-button>
+                </form>
+                `
+            });
+
+            app.component('form-heading',{
+                template:`<h1>{{title}}</h1>`, // Title is provided as a variable
+                data: function(){
+                    return {
+                        title:'Register'
+                    }
+                }
+            });
+            app.component('input-component-1',{
+                template: `
+                <div>
+                    <label for="username">Username</label><br>
+                    <input type="text" name="username" id="username" value="">
+                </div>
+                `
+            });
+            app.component('input-component-2',{
+                template: `
+                <div>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" id="password" value="">
+                </div>
+                `
+            });
+            app.component('submit-button',{
+                template: `<input type="submit" name="" value="Register">`
+            });
+            app.mount('#app');
+        </script>
+    </body>
+</html>

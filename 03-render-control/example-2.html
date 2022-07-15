@@ -14,21 +14,18 @@
         </style>
     </head>
     <body>
-        <a href="/">Home</a> / <a href="doc.html">Doc</a>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
+        </script>
         <div id="app" v-cloak>
-            <div v-if="visible1" class="box c1"></div>
-            <div v-else-if="visible2" class="box c2"></div>
-            <div v-else class="box c3"></div>
-
-            <div v-show="show" class="box c4"></div>
+            <p v-for="(str,index) in strings" v-bind:key="index">{{index}} - {{str}}</p>
         </div>
         <script type="text/javascript">
             let app = Vue.createApp({
                 data : function(){
                     return {
-                        visible1:true,
-                        visible2:true,
-                        show:true
+                        strings:['str 1','str 2','str 3']
                     };
                 }
             });
