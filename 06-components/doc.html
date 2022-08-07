@@ -13,7 +13,7 @@
         <h2>Placeholder</h2>
         <p>Vue uses a custom non-standard placeholder tag in the HTML document so that it can replace it with the real template when it is rendered. It is recommended to use PascalCase when defining components</p>
         <p>If the components are defined in side of HTML dom. It's better to use kebab-case and also a closing tag.</p>
-        <p>Vue.js compolent names are case sensitive.</p>
+        <p>Vue.js component names are case sensitive.</p>
         <pre>
             &#60;div id&#61;&#34;app&#34; v&#45;cloak&#62;
                 &#60;component&#45;1&#62;&#60;&#47;component&#45;1&#62;
@@ -271,6 +271,77 @@
         </pre>
         <h4>Loop through components</h4>
         <p><a href="example-4-4.html">Example - 4.4</a></p>
+        <p>On parent component you can loop through and use <code>v-bind</code> to bind values to the child component. </p>
+        <p>On child component you can use <code>v-bind</code> to bind the values from <code>props</code> array </p>
+        <pre>
+        &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+            let app &#61; Vue&#46;createApp&#40;&#123;&#125;&#41;&#59;
+            app&#46;component&#40;&#39;registration&#45;form&#39;&#44;&#123;
+                template&#58; &#96;
+                &#60;form&#45;heading&#62;&#60;&#47;form&#45;heading&#62;
+                &#60;form &#64;submit&#46;prevent&#61;&#34;submitForm&#34; action&#61;&#34;target&#46;html&#34; method&#61;&#34;post&#34;&#62;
+                    &#60;input&#45;component
+                        v&#45;for&#61;&#34;&#40;obj&#44;index&#41; in inputs&#34; v&#45;bind&#58;key&#61;&#34;index&#34;
+                        v&#45;model&#61;&#34;obj&#46;value&#34;
+                        v&#45;bind&#58;label&#61;&#34;obj&#46;label&#34;
+                        v&#45;bind&#58;type&#61;&#34;obj&#46;type&#34;
+                        v&#45;bind&#58;id&#61;&#34;obj&#46;id&#34;
+                        v&#45;bind&#58;name&#61;&#34;obj&#46;name&#34;&#62;&#60;&#47;input&#45;component&#62;
+                    &#60;submit&#45;button&#62;&#60;&#47;submit&#45;button&#62;
+                &#60;&#47;form&#62;
+                &#96;&#44;
+
+                data&#58; function&#40;&#41;&#123;
+                    return &#123;
+                        inputs &#58; &#91;
+                            &#123;
+                                label&#58; &#39;Username&#39;&#44;
+                                name&#58; &#39;username&#39;&#44;
+                                type&#58; &#39;text&#39;&#44;
+                                id&#58; &#39;id&#39;&#44;
+                                value&#58; &#39;abc&#39;
+                            &#125;&#44;
+                            &#123;
+                                label&#58; &#39;Password&#39;&#44;
+                                name&#58; &#39;password&#39;&#44;
+                                type&#58; &#39;password&#39;&#44;
+                                id&#58; &#39;password&#39;&#44;
+                                value&#58; &#39;def&#39;
+                            &#125;
+                        &#93;
+                    &#125;
+                &#125;&#44;
+                methods&#58;&#123;
+                    submitForm&#58;function&#40;&#41;&#123;
+                        console&#46;log&#40;this&#46;username&#46;value&#44;this&#46;password&#46;value&#41;&#59;
+                    &#125;
+                &#125;
+
+            &#125;&#41;&#59;
+
+            app&#46;component&#40;&#39;input&#45;component&#39;&#44;&#123;
+                template&#58; &#96;
+                &#60;div&#62;
+                    &#60;label &#58;for&#61;&#34;id&#34;&#62;&#123;&#123;label&#125;&#125;&#60;&#47;label&#62;&#60;br&#62;
+                    &#60;input &#58;type&#61;&#34;type&#34; &#58;placeholder&#61;&#34;name&#34; &#58;name&#61;&#34;name&#34; &#58;id&#61;&#34;id&#34; v&#45;model&#61;&#34;inValue&#34;&#62;
+                &#60;&#47;div&#62;
+                &#96;&#44;
+                props&#58;&#91;&#39;label&#39;&#44;&#39;name&#39;&#44;&#39;type&#39;&#44;&#39;id&#39;&#44;&#39;modelValue&#39;&#93;&#44;
+                computed&#58;&#123;
+                    inValue&#58;&#123;
+                        get&#58;function&#40;&#41;&#123;
+                            return this&#46;modelValue&#59;
+                        &#125;&#44;
+                        set&#58;function&#40;value&#41;&#123;
+                            this&#46;&#36;emit&#40;&#39;update&#58;modelValue&#39;&#44;value&#41;&#59;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;&#41;&#59;
+
+            app&#46;mount&#40;&#39;&#35;app&#39;&#41;&#59;
+        &#60;&#47;script&#62;
+        </pre>
 
     </body>
 </html>

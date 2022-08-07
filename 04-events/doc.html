@@ -79,9 +79,22 @@
                 </pre>
             </dd>
             <dt>.self</dt>
+            <dd>
+                <p>Only trigger handler if <code>event.target</code> is the element itself. Not when triggered on a child element</p>
+            </dd>
             <dt>.capture</dt>
+            <dd>
+                <p>Events are first dispatched to the registered listener and then to any <code>EventTarget</code> beneath the DOM tree</p>
+            </dd>
             <dt>.once</dt>
+            <dd>
+                <p>The event listener will be automatically removed after the event is fired.</p>
+            </dd>
             <dt>.passive</dt>
+            <dd>
+                <p>Indicates that the function specified by <code>listener</code> will never call <code>preventDefault()</code> if a passive <br>
+                listener calls <code>preventDefault()</code> user agent will do nothing but giving a warning. </p>
+            </dd>
         </dl>
         <h3>Unique modifier examples</h3>
         <pre>

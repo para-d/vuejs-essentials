@@ -14,38 +14,70 @@
             document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
         </script>
 
-        <div id="app">
-            <parent-component></parent-component>
+        <div id="app" v-cloak>
+            <registration-form></registration-form>
         </div>
         <script type="text/javascript">
             let app = Vue.createApp({});
 
-            app.component('parent-component',{
+            app.component('registration-form',{
                 template: `
-                    <div>
-                        <label>Parent Component</label><br>
-                        <input v-model="search" />
-                    </div>
-                    <div>
-                        <input-component v-model="search" v-bind:label="label"></input-component>
-                    </div>
+                <form-heading></form-heading>
+                <form @submit.prevent="submitForm" action="target.html" method="post">
+                    <input-component
+                        v-for="(obj,index) in inputs" v-bind:key="index"
+                        v-model="obj.value"
+                        v-bind:label="obj.label"
+                        v-bind:type="obj.type"
+                        v-bind:name="obj.name"></input-component>
+                    <submit-button></submit-button>
+                </form>
                 `,
-                data:function(){
+                // component: ['form-heading','input-component','submit-button'],
+                data: function(){
                     return {
-                        label: 'Search Terms',
-                        search: ''
+                        inputs : [
+                            {
+                                label: 'Username',
+                                name: 'username',
+                                type: 'text',
+                                value: 'abc'
+                            },
+                            {
+                                label: 'Password',
+                                name: 'password',
+                                type: 'password',
+                                value: 'def'
+                            }
+                        ]
+                    }
+                },
+                methods:{
+                    submitForm:function(){
+                        console.log(this.username.value,this.password.value);
+                    }
+                }
+
+            });
+
+            app.component('form-heading',{
+                template:`<h1>{{title}}</h1>`, // Title is provided as a variable
+                data: function(){
+                    return {
+                        title:'Register'
                     }
                 }
             });
-
             app.component('input-component',{
-                template:`
-                    <label>{{label}} (child component)</label><br>
-                    <input v-model="childVariable" />
+                template: `
+                <div>
+                    <label :for="name">{{label}}</label><br>
+                    <input :type="type" :placeholder="name" :name="name" :id="name" v-model="inValue">
+                </div>
                 `,
-                props:['label','modelValue'],
+                props:['label','name','type','modelValue'],
                 computed:{
-                    childVariable:{
+                    inValue:{
                         get:function(){
                             return this.modelValue;
                         },
@@ -56,6 +88,9 @@
                 }
             });
 
+            app.component('submit-button',{
+                template: `<input type="submit" name="" value="Register">`
+            });
             app.mount('#app');
         </script>
     </body>
