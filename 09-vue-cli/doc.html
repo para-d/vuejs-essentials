@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="example.html">Example</a>');
+        </script>
+        <h1>Vue CLI</h1>
+
+        <h2>Installation</h2>
+        <code>npm install -g @vue/cli</code>
+        <h2>Creating a Vue project</h2>
+        <code>vue create &#60;project&#45;name&#62;</code>
+        <p>Then it will prompt to select features and take you through the other steps</p>
+        <h2>Directory Structure</h2>
+        <pre>
+            /public/            | contains the index file, and the compiled js will be injected to it.
+            /src/               | where you can find the source codes
+                /assets/
+                /components/    | Sub/shared components that are not connected to router
+                /router/
+                    index.js    | Vue Router configuration
+                /views/         | Main view templates that are connected to router
+                    Home.vue    | Some default page
+                    About.vue   | Some default page
+                App.vue         | main component of the app
+                main.js         | the main js file. the vue app is created and mounted here.
+
+        </pre>
+
+        <h2>Running the scripts listed in package.json</h2>
+        <code>npm run &#60;script&#45;name&#62;</code>
+    </body>
+</html>

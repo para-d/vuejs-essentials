@@ -10,6 +10,10 @@
         </style>
 	</head>
 	<body>
+        <dl>
+            <dt>Reference</dt>
+            <dd><a href="https://www.youtube.com/watch?v=FXpIoQ_rT_c">https://www.youtube.com/watch?v=FXpIoQ_rT_c</a></dd>
+        </dl>
         <div id="container">
 
         </div>
@@ -21,7 +25,10 @@
                 {slug:'03-render-control',title:'Render/Flow Control'},
                 {slug:'04-events',title:'Events'},
                 {slug:'05-methods',title:'Methods'},
-                {slug:'06-components',title:'Components'}
+                {slug:'06-components',title:'Components',example:false},
+                {slug:'07-lifecycle-hooks',title:'Lifecycle Hooks',example:false},
+                {slug:'08-reusable-components',title:'Reusable Components'},
+                {slug:'09-vue-cli',title:'Vue CLI'}
             ];
             var html = '<h1>Index</h1>';
             html+='<dl>';
@@ -30,7 +37,8 @@
                 html+='<dd>';
                     html+='<ul>';
                         html+='<li><a href="'+window.location.href+items[i].slug+'/doc.html">Doc</a></li>';
-                        html+='<li><a href="'+window.location.href+items[i].slug+'/example.html">Example</a></li>';
+                        if(typeof items[i].example == 'undefined' || items[i].example)
+                            html+='<li><a href="'+window.location.href+items[i].slug+'/example.html">Example</a></li>';
                     html+='</ul>';
                 html+='</dd>';
             }

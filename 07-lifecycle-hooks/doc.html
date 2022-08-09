@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Doc</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a>');
+            // document.write('<a href="'+home+'">Home</a> / <a href="example.html">Example</a>');
+        </script>
+        <h1>Lifecycle Hooks</h1>
+        <p>You can create the lifecycle hook functions in your options object.</p>
+        <dl>
+            <dt>Use Cases</dt>
+            <dd>
+                <ul>
+                    <li>Check for authorization</li>
+                    <li>API calls</li>
+                    <li>Create/remove events</li>
+                    <li>Set and clean-up data</li>
+                </ul>
+            </dd>
+        </dl>
+        <pre>
+            &#60;script type&#61;&#34;text&#47;javascript&#34;&#62;
+                let app &#61; Vue&#46;createApp&#40;&#123;
+                    created&#58;function&#40;&#41;&#123; &#47;&#42;&#46;&#46;&#46;&#42;&#47; &#125;&#44;
+                    mounted&#58;function&#40;&#41;&#123; &#47;&#42;&#46;&#46;&#46;&#42;&#47; &#125;&#44;
+                    unmounted&#58;function&#40;&#41;&#123; &#47;&#42;&#46;&#46;&#46;&#42;&#47; &#125;
+                &#125;&#41;&#59;
+
+                app&#46;component&#40;&#39;component&#45;name&#39;&#44;&#123;
+                    template&#58;&#96;&#60;div&#62;&#60;&#47;div&#62;&#96;&#44;
+                    beforeUpdate&#58;function&#40;&#41;&#123;&#125;&#44;
+                    updated&#58;function&#40;&#41;&#123;&#125;
+                &#125;&#41;&#59;
+            &#60;&#47;script&#62;
+        </pre>
+        <dl>
+            <dt>beforeCreate</dt>
+            <dd></dd>
+            <dt>created</dt>
+            <dd></dd>
+            <dt>beforeMount</dt>
+            <dd></dd>
+            <dt>mounted</dt>
+            <dd></dd>
+            <dt>beforeUpdate</dt>
+            <dd></dd>
+            <dt>updated</dt>
+            <dd></dd>
+            <dt>beforeUnmount</dt>
+            <dd></dd>
+            <dt>unmounted</dt>
+            <dd></dd>
+            <dt>errorCaptured</dt>
+            <dd></dd>
+            <dt>renderTracked</dt>
+            <dd></dd>
+            <dt>renderTriggered</dt>
+            <dd></dd>
+            <dt>activated</dt>
+            <dd></dd>
+            <dt>deactivated</dt>
+            <dd></dd>
+            <dt>serverPrefetch</dt>
+            <dd></dd>
+        </dl>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Example</title>
+        <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+        <style media="screen">
+            [v-cloak] { display: :none; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const home = window.location.host === 'para-d.github.io' ? '/vuejs-essentials/' : '/';
+            document.write('<a href="'+home+'">Home</a> / <a href="doc.html">Doc</a>');
+        </script>
+
+        <div id="app" v-cloak>
+                <component-1></component-1>
+        </div>
+        <script type="text/javascript">
+            let app = Vue.createApp({});
+
+            app.component('component-1',{
+                template: `
+                    <div><h1>This is Component1</h1></div>
+                `
+            });
+
+            app.mount('#app');
+        </script>
+    </body>
+</html>
